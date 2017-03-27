@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Doughnut Chart</title>
+	<script src="../dist/jquery-2.2.3.min.js"></script>
+    <script src="../dist/Chart.bundle.js"></script>
+    <script src="utils.js"></script>
+    <style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
+</head>
+
+<body>
+ <canvas id="areaChart" style="height:250px"></canvas>
+ <canvas id="pieChart" style="height:250px"></canvas>
+ <canvas id="lineChart" style="height:250px"></canvas>
+ <canvas id="barChart" style="height:230px"></canvas>
+ 
+
+    <script>
+$( document ).ready(function() {
+
+var chartData={pieData:[10,50,100,20,80,102]};
+
+ var pieconfig = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: chartData.pieData,
+                backgroundColor: ["#f56954","#00a65a","#f39c12","#00c0ef","#3c8dbc","#d2d6de"],
+                label: 'Dataset 1'
+            }],
+            labels: ["Red","Orange","Yellow","Green","Blue","Pink"]
+        },
+        options: {
+            responsive: true,
+            legend: {position: 'top'},
+            title: {display: true,text: 'Chart.js Doughnut Chart'},
+            animation: {animateScale: true,animateRotate: true}
+        }
+    };
+	
+ var barconfig = {
+        type: 'bar',
+        data: {
+            datasets: [{
+                data: [65, 59, 80, 81, 56, 55, 40],
+                backgroundColor: "rgba(210, 214, 222, 1)",
+                borderWidth: 1,
+                label: 'Electronics'
+            },
+			{
+                data: [28, 48, 40, 19, 86, 27, 90],
+                backgroundColor: "#00a65a",
+                borderWidth: 1,
+                label: 'Digital Goods'
+            },
+			{
+                data: [40, 19, 86, 65, 59, 80, 81],
+                backgroundColor: "rgba(60,141,188,0.9)",
+                borderWidth: 1,
+                label: 'New Goods'
+            }],
+            labels: ["January", "February", "March", "April", "May", "June", "July"]
+        },
+        options: {
+                    // Elements options apply to all of the options unless overridden in a dataset
+                    // In this case, we are setting the border of each horizontal bar to be 2px wide
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                        }
+                    },
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Horizontal Bar Chart'
+                    },
+					tooltips: {
+                    mode: 'index',
+                    intersect: true
+                }
+					
+					
+					
+					
+                }
+    };	
+
+	 var lineconfig = {
+        type: 'line',
+        data: {
+            datasets: [{
+                data: [65, 59, 80, 81, 56, 55, 40],
+                backgroundColor: "rgba(210, 214, 222, 1)",
+				borderColor: "rgba(210, 214, 222, 1)",
+                label: 'Electronics',
+				 fill: false
+            },
+			{
+                data: [81, 56, 55, 40,65, 59, 80],
+                backgroundColor: "rgba(60,141,188,0.9)",
+				borderColor: "rgba(60,141,188,0.9)",
+                label: 'Digital Goods',
+				 fill: false
+            }],
+            labels: ["January", "February", "March", "April", "May", "June", "July"]
+        },
+        options: {
+          responsive: true,
+                title:{
+                    display:true,
+                    text:'Chart.js Line Chart'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                }
+                }
+    };	
+	
+	 var areaconfig = {
+        type: 'line',
+        data: {
+            datasets: [{
+                data: [28, 48, 40, 19, 86, 27, 90],
+				                backgroundColor: "rgba(60,141,188,0.9)",
+				borderColor: "rgba(60,141,188,0.9)",
+                
+				borderWidth: 1,
+                label: 'Electronics',
+            },
+			{
+                data: [65, 59, 80, 81, 56, 55, 40],
+backgroundColor: "rgba(210, 214, 222, 1)",
+				borderColor: "rgba(210, 214, 222, 1)",
+				borderWidth: 1,
+                label: 'Digital Goods',
+            }],
+            labels: ["January", "February", "March", "April", "May", "June", "July"]
+        },
+        options: {
+          responsive: true,
+                title:{
+                    display:true,
+                    text:'Chart.js Line Chart'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                }
+                }
+    };	
+	
+var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+var pieChart = new Chart(pieChartCanvas,pieconfig);
+
+   var barChartCanvas = $("#barChart").get(0).getContext("2d");
+   var barChart = new Chart(barChartCanvas,barconfig);
+   
+      var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+   var lineChart = new Chart(lineChartCanvas,lineconfig);
+   
+         var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
+   var areaChart = new Chart(areaChartCanvas,areaconfig);
+
+});
+    </script>
+</body>
+
+</html>
